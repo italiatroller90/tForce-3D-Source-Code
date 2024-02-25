@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://db2lwrnqa2xg7"]
+
+[ext_resource type="Script" path="res://Scenes/Scene Scripts/main_menu.gd" id="1_udehg"]
+[ext_resource type="Texture2D" uid="uid://c7d4ljmwmejab" path="res://Images & Models/bg.png" id="2_heovo"]
+[ext_resource type="Texture2D" uid="uid://x753pr0qtu6n" path="res://Images & Models/logo.png" id="3_iffwj"]
+[ext_resource type="AudioStream" uid="uid://un4r34espcpm" path="res://Audio/music/main theme.mp3" id="4_hhyac"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_udehg")
+
+[node name="Bg" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(1486, 803)
+scale = Vector2(101.562, 57.625)
+texture = ExtResource("2_heovo")
+
+[node name="UIContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.5
+offset_top = -50.5
+offset_right = 175.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="Sprite2D" parent="UIContainer"]
+position = Vector2(174.5, -130)
+scale = Vector2(0.398438, 0.426562)
+texture = ExtResource("3_iffwj")
+
+[node name="Start" type="Button" parent="UIContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Options" type="Button" parent="UIContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="UIContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="main_theme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hhyac")
+autoplay = true
+
+[connection signal="pressed" from="UIContainer/Start" to="." method="_on_start_pressed"]
