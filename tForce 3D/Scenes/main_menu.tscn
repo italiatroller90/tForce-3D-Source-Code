@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://db2lwrnqa2xg7"]
 
 [ext_resource type="Script" path="res://Scenes/Scene Scripts/main_menu.gd" id="1_udehg"]
-[ext_resource type="Texture2D" uid="uid://c7d4ljmwmejab" path="res://Images & Models/bg.png" id="2_heovo"]
-[ext_resource type="Texture2D" uid="uid://x753pr0qtu6n" path="res://Images & Models/logo.png" id="3_iffwj"]
+[ext_resource type="Texture2D" uid="uid://c7d4ljmwmejab" path="res://Images & Models/Background & Logo Images/bg.png" id="2_heovo"]
+[ext_resource type="Texture2D" uid="uid://x753pr0qtu6n" path="res://Images & Models/Background & Logo Images/logo.png" id="3_iffwj"]
 [ext_resource type="AudioStream" uid="uid://un4r34espcpm" path="res://Audio/music/main theme.mp3" id="4_hhyac"]
 
 [node name="MainMenu" type="Control"]

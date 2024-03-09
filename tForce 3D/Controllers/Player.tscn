@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtbnmqurmuia4"]
+[gd_scene load_steps=8 format=3 uid="uid://dtbnmqurmuia4"]
 
 [ext_resource type="Script" path="res://Controllers/Player.gd" id="1_65pnc"]
 [ext_resource type="AudioStream" uid="uid://ldctd3n67l05" path="res://Audio/sfx/jump.wav" id="2_qlnou"]
-[ext_resource type="PackedScene" uid="uid://c08qriixl5sif" path="res://Images & Models/model.glb" id="3_d20dq"]
+[ext_resource type="Texture2D" uid="uid://q2kk3vyc1h6a" path="res://Images & Models/Textures/palette(2).png" id="2_xvka0"]
+[ext_resource type="ArrayMesh" uid="uid://prgr81kechr0" path="res://Images & Models/Weapon Models/staff.obj" id="3_wwg64"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_46wyg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_t0jug"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pl3b"]
+albedo_texture = ExtResource("2_xvka0")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_65pnc")
@@ -24,9 +28,10 @@ transform = Transform3D(2.92816, 0, 0, 0, 1.06008, 0, 0, 0, 1.45863, 0, 0, -0.11
 transform = Transform3D(0.341511, 0, 0, 0, 0.943325, 0, 0, 0, 0.685575, 0, 0.591931, 0)
 fov = 90.0
 
-[node name="model" parent="Head" instance=ExtResource("3_d20dq")]
-transform = Transform3D(-0.00274528, -0.000450657, -0.0328714, -0.0301449, 0.0252848, 0.00121882, 0.0298696, 0.0254764, -0.00179112, 0.188028, 0.392598, -0.495156)
-rotation_edit_mode = 1
+[node name="Weapon" type="MeshInstance3D" parent="Head/Camera3D"]
+transform = Transform3D(0.085062, -0.000229341, -0.000457432, 0.000502642, 0.0474704, 0.0696832, 7.14794e-05, -0.0608823, 0.0543342, 0.00277591, -0.838457, -0.326445)
+material_override = SubResource("StandardMaterial3D_0pl3b")
+mesh = ExtResource("3_wwg64")
 
 [node name="jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_qlnou")

@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 var speed
-const WALK_SPEED = 30
-const SPRINT_SPEED = 35
-const JUMP_VELOCITY = 3
+const WALK_SPEED = 10
+const SPRINT_SPEED = 20
+const JUMP_VELOCITY = 8
 const SENSITIVITY = 0.004
 
 #bob variables
@@ -12,7 +12,7 @@ const BOB_AMP = 0.08
 var t_bob = 0.0
 
 #fov variables
-const BASE_FOV = 75.0
+const BASE_FOV = 90.0
 const FOV_CHANGE = 1.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -61,15 +61,16 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
-
+	
+	# Head bob
+	t_bob += delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(t_bob)
 	
 	# FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 	
-	if Input.is_action_just_pressed("jump"):
-		$jump.play()
 	move_and_slide()
 
 
@@ -78,6 +79,3 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
-
-
-
